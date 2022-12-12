@@ -4,6 +4,8 @@ Created on Sun Dec 11 10:17:54 2022
 
 @author: qomon
 """
+#in this assignment, i created a code which helps you know estimated amount of money you might spend when you go out. i added several restaurants with its menu and prices. the code also asks coupon or membership card and check it if it is valid.
+#you will see the final estimated amount of money on there.
 
 # Define the menus and prices for each restaurant
 leo_pizza = {
