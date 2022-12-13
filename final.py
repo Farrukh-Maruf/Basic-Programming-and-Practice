@@ -111,27 +111,44 @@ while True:
             print("Invalid item name")
 import re
 phone_number_pattern = re.compile(r'^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$')
+membership_card_pattern = re.compile(r'^[A-Z]{2}[0-9]{4}$')
+
 
 # Now ask if the customer has discount coupon or membership card
+
+
 while True:
     ask= input('\nDo you have a discount coupon or a membership card? (yes/no)')
     if ask=='no':
         break
     else:
         ask_discount=input('\nGreat, which one do you have discount coupon (dc) or membership card (mc) ')
-        if ask_discount=='dc':
-            phone_number=input("\nPlease, write your phone number to confirm your Coupon:")
+        
+        
+        count=0
+        while count!=3:
+                    
+             if ask_discount=='dc':
+                  phone_number=input("\nPlease, write your phone number to confirm your Coupon:")
+                              
+                  if phone_number_pattern.search(phone_number):
+                     order_price= order_price- order_price*0.1
+                     print("\nAccepted")
+                     count=3
             
-            if phone_number_pattern.search(phone_number):
-                 order_price= order_price- order_price*0.1
-                 print("\nAccepted")
-            else:
-                 print('\n Please, give a valid phone number')                 
-            
-        else:
-            input('\nPlease, write your membership card number to confirm:')
-            print()
-            order_price= order_price- order_price*0.05
+                  else:
+                       print('\n Please, give a valid phone number') 
+                       count=count+1
+                       
+             elif ask_discount=='mc':
+                membership_card_number=input('\n Please, write membership card number to confirm: ')
+                if membership_card_pattern.search(membership_card_number):
+                    order_price = order_price - order_price * 0.05
+                    count=3
+                else:
+                    print('\nPlease, give a valid membership card number')
+                    count=count+1
+
         break
 # final part, ask if he\she wants to eat out or inside of the restaurant
 while True:
